@@ -1,0 +1,271 @@
+/* ===== Cài đặt chung ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(160deg, #dbeafe 0%, #e0e7ff 50%, #fce7f3 100%);
+  background-attachment: fixed;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ===== Khung ứng dụng ===== */
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  font-size: 1.6rem;
+}
+
+.unit-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  background: #1d4ed8;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.unit-button:hover {
+  background: #1e40af;
+}
+
+/* ===== Bố cục: mặc định xếp dọc (điện thoại) ===== */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.column-left,
+.column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0; /* tránh nội dung làm tràn ngang */
+}
+
+/* Từ 768px trở lên: 2 cột */
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .column-left {
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  .column-right {
+    flex: 1;
+  }
+}
+
+/* ===== Thẻ (card) ===== */
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(30, 41, 59, 0.1);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+/* ===== Danh sách thành phố ===== */
+.city-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .city-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.city-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #1e293b;
+  font-size: 0.95rem;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.city-button:hover {
+  background: #dbeafe;
+}
+
+.city-button.selected {
+  background: #2563eb;
+  border-color: #1e3a8a;
+  color: white;
+  font-weight: 600;
+}
+
+/* ===== Thông báo (chưa chọn / loading / lỗi) ===== */
+.message-card {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.retry-button {
+  margin-top: 16px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 999px;
+  background: #dc2626;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.retry-button:hover {
+  background: #b91c1c;
+}
+
+/* ===== Thời tiết hiện tại ===== */
+.current-card {
+  text-align: center;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+}
+
+.current-city {
+  font-size: 1.5rem;
+}
+
+.current-temp {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.current-description {
+  font-size: 1.2rem;
+  margin: 8px 0 16px;
+}
+
+.current-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.detail-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 130px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.detail-box strong {
+  font-size: 1.2rem;
+}
+
+.update-time {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* ===== Dự báo 7 ngày ===== */
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.forecast-item {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f1f5f9;
+}
+
+.forecast-item.today {
+  background: #dbeafe;
+  border: 2px solid #2563eb;
+}
+
+.forecast-weekday {
+  font-weight: 600;
+}
+
+.forecast-date {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.forecast-description {
+  font-size: 0.9rem;
+}
+
+.forecast-temps {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.temp-max {
+  font-weight: 700;
+  color: #dc2626;
+}
+
+.temp-min {
+  color: #2563eb;
+}
+
+/* Màn hình nhỏ: thu gọn dự báo cho vừa chiều ngang */
+@media (max-width: 480px) {
+  .forecast-item {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Mô tả xuống dòng riêng bên dưới để không bị chật */
+  .forecast-description {
+    grid-column: 1 / -1;
+    font-size: 0.85rem;
+    color: #475569;
+  }
+}
